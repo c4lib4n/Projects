@@ -1,5 +1,5 @@
 Projects --- Portfolio
-Here is the place here I'll keep my progress for Java and Rust
+Here is the place where I'll keep my progress for Java and Rust
 
 
 

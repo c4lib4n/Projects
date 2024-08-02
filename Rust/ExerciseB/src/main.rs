@@ -1,8 +1,6 @@
 // Silence some warnings so they don't distract from the exercise.
 #![allow(unused_variables)]
 
-
-
 fn main() {
     let width = 4;
     let height = 7;
@@ -11,7 +9,7 @@ fn main() {
         let area = area_of(width, height);
     println!("Area is {}", area);
     println!("Volume is {}", volume(width, height, depth));
-    print!("hhhh")
+
 }
 
 fn area_of(x: i32, y: i32) -> i32 {
@@ -23,4 +21,3 @@ fn area_of(x: i32, y: i32) -> i32 {
 fn volume(a: i32, b:i32, c:i32) -> i32{
     a * b * c
 }
-

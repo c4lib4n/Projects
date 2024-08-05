@@ -1,1 +1,1 @@
-C:\Users\chagasda\Documents\Study\Projects\Rust\ExerciseC\target\debug\ExerciseC.exe: C:\Users\chagasda\Documents\Study\Projects\Rust\ExerciseC\src\lib.rs C:\Users\chagasda\Documents\Study\Projects\Rust\ExerciseC\src\main.rs
+/Users/matheuschagasdasilva/Projects/Rust/ExerciseC/target/debug/ExerciseC: /Users/matheuschagasdasilva/Projects/Rust/ExerciseC/src/lib.rs /Users/matheuschagasdasilva/Projects/Rust/ExerciseC/src/main.rs

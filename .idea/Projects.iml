@@ -5,9 +5,15 @@
       <sourceFolder url="file://$MODULE_DIR$/Rust/ExerciseA/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Rust/ExerciseB/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Rust/ExerciseC/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Rust/ExerciseD/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Rust/ExerciseInputData/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/RustPTBR/Exercise2/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Rust/ExerciseA/target" />
       <excludeFolder url="file://$MODULE_DIR$/Rust/ExerciseB/target" />
       <excludeFolder url="file://$MODULE_DIR$/Rust/ExerciseC/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Rust/ExerciseD/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Rust/ExerciseInputData/target" />
+      <excludeFolder url="file://$MODULE_DIR$/RustPTBR/Exercise2/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

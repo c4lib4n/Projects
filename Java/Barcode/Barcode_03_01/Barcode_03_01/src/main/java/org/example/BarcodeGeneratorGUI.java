@@ -52,9 +52,10 @@ public class BarcodeGeneratorGUI extends JFrame {
     }
 
 
+
     public BarcodeGeneratorGUI() {
         // Set up the frame
-        setTitle("Barcode Generator ---- created by @chagasda");
+        setTitle("Barcode Generator ---- created by @user");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 

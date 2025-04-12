@@ -37,7 +37,21 @@ public class BarcodeGeneratorGUI extends JFrame {
     private JTextField barcodeDataField;
     private JPanel barcodePanel;
     private JLabel resultLabel;
-    private static final String excelFilePath = "/Users/user/Downloads/name.xlsx/"; // Update with your actual file path
+    private String excelFilePath;
+    private JTextField searchField = new JTextField(20);
+
+    private void processExcelFile(String filePath) {
+        try {
+            FileInputStream file = new FileInputStream(filePath);
+            Workbook workbook = new XSSFWorkbook(file);
+            // Your existing Excel processing code
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error reading Excel file!",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
 
     public BarcodeGeneratorGUI() {
         // Set up the frame
@@ -51,17 +65,28 @@ public class BarcodeGeneratorGUI extends JFrame {
         JButton generateButton = new JButton("Generate Barcode");
         barcodePanel = new JPanel();
 
+        resultLabel = new JLabel("Result: ");
+
         // At the beginning when creating your panel
         inputPanel = new JPanel();
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
 
 
         // After your existing component declarations (barcodeDataField, generateButton, etc.)
-        JTextField searchField = new JTextField(20);
-        JButton searchButton = new JButton("Search");
         JLabel resultLabel = new JLabel("Result: ");
         JLabel barcodeLabel = new JLabel("Enter barcode data: ");
         JLabel searchTitle = new JLabel("Search UPC barcode");
+
+        //Create the Buttons
+        JButton searchBarcodeButton = new JButton("Search Barcode");
+        // Add a button to your UI for file selection
+        JButton browseButton = new JButton("Select Excel File");
+
+
+        // Create a file chooser instance
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Excel Files", "xlsx", "xls"));
+
 
         // Make search field text bigger
         searchField.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -70,7 +95,7 @@ public class BarcodeGeneratorGUI extends JFrame {
         barcodeDataField.setFont(new Font("Arial", Font.PLAIN, 30));
 
         //Make the search button bigger
-        searchButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        searchBarcodeButton.setFont(new Font("Arial", Font.PLAIN, 30));
 
         //Make the result label output bigger
         resultLabel.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -84,30 +109,59 @@ public class BarcodeGeneratorGUI extends JFrame {
         //Make the Search title bigger
         searchTitle.setFont(new Font("Arial", Font.PLAIN, 30));
 
+        //Make the select file button bigger
+        browseButton.setFont(new Font("Arial", Font.PLAIN, 30));
+
+
+        // Add action listener to the browse button
+        browseButton.addActionListener(e -> {
+            int result = fileChooser.showOpenDialog(this);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                excelFilePath = selectedFile.getAbsolutePath();
+                // Store the file path or directly use the file for your Excel operations
+                // You might want to store this path in a class variable
+                processExcelFile(excelFilePath);
+            }
+        });
+
+
         // Add action listener to the search button
-        searchButton.addActionListener(e -> {
+        searchBarcodeButton.addActionListener(e -> {
+            if (excelFilePath == null || excelFilePath.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please select an Excel file first!");
+                return;
+            }
+
             String searchValue = searchField.getText();
             String result = searchExcelFile(searchValue, excelFilePath);
 
 
             if (!result.equals("No value found") && !result.startsWith("Error")) {
-                // If a match is found, set the barcode data and generate it
                 barcodeDataField.setText(result);
-                generateBarcode(result);  // This will print the barcode
+                generateBarcode(result);
                 resultLabel.setText("Result: " + result + " - Barcode printed");
+
+                // Clear the search fields
+                searchField.setText("");
+                barcodeDataField.setText("");
+                resultLabel.setText("Result: ");
+
+                // Set focus back to search field
+                searchField.requestFocus();
             } else {
                 resultLabel.setText("Result: " + result);
             }
 
-            //resultLabel.setText("Result: " + result);
-
-
         });
 
         // Add these components to your inputPanel after your existing components
+        inputPanel.add(browseButton);  // Add browse button first
+        inputPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add some spacing
         inputPanel.add(searchTitle);
         inputPanel.add(searchField);
-        inputPanel.add(searchButton);
+        inputPanel.add(searchBarcodeButton);
         inputPanel.add(resultLabel);
         inputPanel.add(barcodeLabel);
         inputPanel.add(barcodeDataField);
@@ -272,8 +326,9 @@ public class BarcodeGeneratorGUI extends JFrame {
 
             // Clear the input field for the next barcode
             barcodeDataField.setText("");
-            barcodeDataField.requestFocus();
-
+            searchField.setText("");
+            resultLabel.setText("Result: ");
+            searchField.requestFocus();
         } catch (BarcodeException | PrinterException ex) {
             JOptionPane.showMessageDialog(this, "Error printing barcode: " + ex.getMessage());
         }

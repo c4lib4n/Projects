@@ -10,6 +10,5 @@ public class BarcodeGenerator {
             BarcodeGeneratorGUI gui = new BarcodeGeneratorGUI();
             gui.setVisible(true);
         });
-
     }
 }

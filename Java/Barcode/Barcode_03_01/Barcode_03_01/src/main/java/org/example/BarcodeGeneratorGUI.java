@@ -37,11 +37,11 @@ public class BarcodeGeneratorGUI extends JFrame {
     private JTextField barcodeDataField;
     private JPanel barcodePanel;
     private JLabel resultLabel;
-    private static final String excelFilePath = "/Users/chagasda/Downloads/AFE.xlsx/"; // Update with your actual file path
+    private static final String excelFilePath = "/Users/user/Downloads/name.xlsx/"; // Update with your actual file path
 
     public BarcodeGeneratorGUI() {
         // Set up the frame
-        setTitle("Barcode Generator ---- created by @chagasda");
+        setTitle("Barcode Generator ---- created by @user");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
